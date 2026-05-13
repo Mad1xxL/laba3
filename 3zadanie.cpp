@@ -1,58 +1,54 @@
 #include <iostream>
+#include <cmath>
 
-long long gcd (long long a, long long b){
-    return b == 0 ? a : gcd(b, a % b);
+long long gcd(long long a, long long b) {
+    while (b) {
+        long long r = a % b;
+        a = b;
+        b = r;
+    }
+    return a;
 }
 
-void matSum(int a, int b)    {
-    if (b == 1) {
-        std::cout << "infinity" << std::endl;
-        return;
-    }
-
-    int num;
-    int den;
-
-    if (a == 1) {
-        num = b;
-        den = (b-1) * (b-1);
-    }
-
-    else if (a == 2) {
-        num = b * (b+1);
-        den = (b-1) * (b-1) * (b-1);
-    }
-
-    else if (a == 3) {
-        num = b * (b * b + 4 * b + 1);
-        den = (b-1) * (b-1) * (b-1) * (b-1);
-    }
-
-    }
-
-    num /= nod;
-    den /= nod;
-
-    std::cout << num << "/" << den << std::endl;
-}
-
-int main()  {
+int main() {
     int a;
-    std::cout << "Введите значение a: ";
-    std::cin >> a;
-
     int b;
-    std::cout << "Введите значение b: ";
-    std::cin >> b;
+    std::cin >> a >> b;
 
     if (b == 1) {
-        std::cout << "infinity" << std::endl;
+        std::cout << "infinity";
         return 0;
     }
 
-    
+    double sum = 0;
+    double term = 1.0 / b;
 
-    matSum(a,b);
-    
+    for (int n = 1; n <= 1000000 && term > 1e-15; n++) {
+        if (n > 1) {
+            term *= pow(1.0 * n / (n - 1), a) / b;
+        }
+        sum += term;
+    }
+
+    long long num = 0;
+    long long den = 1;
+
+    for (long long d = 1; d <= 1000000; d++) {
+        long long n = round(sum * d);
+
+        if (fabs(sum - 1.0 * n / d) < 1e-12) {
+            num = n;
+            den = d;
+            break;
+        }
+    }
+
+    long long g = gcd(llabs(num), den);
+
+    num /= g;
+    den /= g;
+
+    std::cout << num << "/" << den;
+
     return 0;
 }

@@ -17,7 +17,7 @@ double f(double x) {
 
     // 3. Правая полуокружность
     else if (x > 4.0 && x <= 6.0) {
-        return sqrt(4.0 - (x - 6.0) * (x - 6.0));
+        return sqrt(4.0 - (x - 4.0) * (x - 4.0));
     }
 
     // Вне заданных участков графика
@@ -51,7 +51,7 @@ int main() {
         std::cout << "| "
              << std::setw(8) << x
              << " | "
-             << std::setw(26) << y
+             << std::setw(24) << y
              << " |\n";
     }
 

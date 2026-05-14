@@ -43,7 +43,7 @@ std::vector<int> buildSimple() {
     return simple;
 }
 
-//Проерка есть ли элемент x в контейнере
+//Проверка есть ли элемент x в контейнере
 bool contains(const std::vector<long long>& values, long long x) {
     for (long long value : values) {
         if (value == x) {
@@ -54,7 +54,7 @@ bool contains(const std::vector<long long>& values, long long x) {
     return false;
 }
 
-//Генерация сичла m
+//Генерация числа m
 long long generateM(
     int bits,
     const std::vector<int>& simple,
@@ -187,14 +187,14 @@ int main() {
 
             if (!firstCheck) {
                 rejected++;
-                continue;
+                result = false;
+                break;
             }
 
             result = millerTest(number, 2, simpleDel);
 
             if (!result) {
                 rejected++;
-                continue;
             }
 
             break;
@@ -205,9 +205,9 @@ int main() {
                   << " | "
                   << std::setw(14) << number
                   << " | "
-                  << std::setw(9) << "true"
+                  << std::setw(9) << (result ? "true" : "false")
                   << " | "
-                  << std::setw(8) << rejected
+                  << std::setw(9) << rejected
                   << " |\n";
     }
 

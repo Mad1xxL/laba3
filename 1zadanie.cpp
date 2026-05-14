@@ -40,22 +40,22 @@ int main() {
 
     std::cout << std::fixed << std::setprecision(4);
 
-    std::cout << "\n------------------------------------------\n";
-    std::cout << "|     x    |             y              |\n";
-    std::cout << "------------------------------------------\n";
+    std::cout << "\n-------------------------------\n";
+    std::cout << "|     x        |       y      |\n";
+    std::cout << "-------------------------------\n";
 
     for (double x = Xn; x <= Xk + 1e-9; x += dx) {
 
         double y = f(x);
 
         std::cout << "| "
-             << std::setw(8) << x
+             << std::setw(12) << x
              << " | "
-             << std::setw(24) << y
+             << std::setw(12) << y
              << " |\n";
     }
 
-    std::cout << "------------------------------------------\n";
+    std::cout << "-------------------------------\n";
 
     return 0;
 }

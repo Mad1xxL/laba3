@@ -2,6 +2,7 @@
 #include <vector>
 #include <climits>
 #include <algorithm>
+#include <cstdint>
 
 int main()  {
     int n = 0;
@@ -26,7 +27,7 @@ int main()  {
     while (pos < n) {
         int nOstaloc = n - pos;
         int limit = std::min(m, nOstaloc);  
-        int64_t bestSum = LLONG_MIN;          // Лучшая найденная сумма
+        int64_t bestSum = INT64_MIN;          // Лучшая найденная сумма
         int bestTake = -1;
 
         for (int take = 1; take <= limit; take++)   {       // Перебор всех возможных ходов

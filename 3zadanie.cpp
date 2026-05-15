@@ -43,7 +43,7 @@ int main() {
         }
     }
 
-    int64_t g = gcd(llabs(num), den);
+    int64_t g = gcd(abs(num), den);
 
     num /= g;
     den /= g;

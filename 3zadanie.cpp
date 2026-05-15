@@ -1,9 +1,9 @@
 #include <iostream>
 #include <cmath>
 
-long long gcd(long long a, long long b) {
+int64_t gcd(int64_t a, int64_t b) {
     while (b) {
-        long long r = a % b;
+        int64_t r = a % b;
         a = b;
         b = r;
     }
@@ -30,11 +30,11 @@ int main() {
         sum += term;
     }
 
-    long long num = 0;
-    long long den = 1;
+    int64_t num = 0;
+    int64_t den = 1;
 
-    for (long long d = 1; d <= 1000000; d++) {
-        long long n = round(sum * d);
+    for (int64_t d = 1; d <= 1000000; d++) {
+        int64_t n = round(sum * d);
 
         if (fabs(sum - 1.0 * n / d) < 1e-12) {
             num = n;
@@ -43,7 +43,7 @@ int main() {
         }
     }
 
-    long long g = gcd(llabs(num), den);
+    int64_t g = gcd(llabs(num), den);
 
     num /= g;
     den /= g;

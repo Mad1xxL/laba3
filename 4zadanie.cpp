@@ -9,7 +9,7 @@ int main()  {
     int m = 0;
     std::cin >> n >> m;
 
-    std::vector<long long> a(n);
+    std::vector<int64_t> a(n);
     for (int i = 0; i < n; i++) {
         std::cin >> a[i];
     }

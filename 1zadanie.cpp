@@ -46,13 +46,22 @@ int main() {
 
     for (double x = Xn; x <= Xk + 1e-9; x += dx) {
 
-        double y = f(x);
+        if (x < -6.0 || x > 6.0) {
+            std::cout << "| "
+                    << std::setw(12) << x
+                    << " | "
+                    << std::setw(12) << "Not defined"
+                    << " |\n";
+        }
+        else {
+            double y = f(x);
 
-        std::cout << "| "
-             << std::setw(12) << x
-             << " | "
-             << std::setw(12) << y
-             << " |\n";
+            std::cout << "| "
+                    << std::setw(12) << x
+                    << " | "
+                    << std::setw(12) << y
+                    << " |\n";
+        }
     }
 
     std::cout << "-------------------------------\n";

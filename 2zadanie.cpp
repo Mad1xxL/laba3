@@ -5,8 +5,8 @@
 #include <iomanip>
 
 //мод числа
-long long mod(long long base, long long power, long long modulo) {
-    long long result = 1;
+ int64_t mod( int64_t base,  int64_t power,  int64_t modulo) {
+     int64_t result = 1;
 
     while (power > 0) {
         if (power % 2 == 1) {
@@ -44,8 +44,8 @@ std::vector<int> buildSimple() {
 }
 
 //Проверка есть ли элемент x в контейнере
-bool contains(const std::vector<long long>& values, long long x) {
-    for (long long value : values) {
+bool contains(const std::vector< int64_t>& values,  int64_t x) {
+    for ( int64_t value : values) {
         if (value == x) {
             return true;
         }
@@ -55,18 +55,18 @@ bool contains(const std::vector<long long>& values, long long x) {
 }
 
 //Генерация числа m
-long long generateM(
+ int64_t generateM(
     int bits,
     const std::vector<int>& simple,
-    std::vector<long long>& simpleDel
+    std::vector< int64_t>& simpleDel
 ) {
     int mBits = bits - 1;
 
-    long long minM = 1LL << (mBits - 1);
-    long long maxM = (1LL << mBits) - 1;
+     int64_t minM = 1LL << (mBits - 1);
+     int64_t maxM = (1LL << mBits) - 1;
 
     while (true) {
-        long long m = 1;
+         int64_t m = 1;
         simpleDel.clear();
 
         while (true) {
@@ -91,9 +91,9 @@ long long generateM(
 
 //Проверка числа тестом Миллера
 bool millerTest(
-    long long n,
+     int64_t n,
     int t,
-    const std::vector<long long>& simpleDel
+    const std::vector< int64_t>& simpleDel
 ) {
     if (n < 2) {
         return false;
@@ -107,26 +107,26 @@ bool millerTest(
         return false;
     }
 
-    std::vector<long long> bases;
+    std::vector< int64_t> bases;
 
     while ((int)bases.size() < t) {
-        long long base = 2 + std::rand() % (n - 3);
+         int64_t base = 2 + std::rand() % (n - 3);
 
         if (!contains(bases, base)) {
             bases.push_back(base);
         }
     }
 
-    for (long long base : bases) {
+    for ( int64_t base : bases) {
         if (mod(base, n - 1, n) != 1) {
             return false;
         }
     }
 
-    for (long long q : simpleDel) {
+    for ( int64_t q : simpleDel) {
         bool hasNotOne = false;
 
-        for (long long base : bases) {
+        for ( int64_t base : bases) {
             if (mod(base, (n - 1) / q, n) != 1) {
                 hasNotOne = true;
                 break;
@@ -169,14 +169,14 @@ int main() {
     std::cout << "-----------------------------------------------\n";
 
     for (int i = 1; i <= 10; i++) {
-        long long number = 0;
+         int64_t number = 0;
         int rejected = 0;
         bool result = false;
 
         while (true) {
-            std::vector<long long> simpleDel;
+            std::vector< int64_t> simpleDel;
 
-            long long m = generateM(bits, simple, simpleDel);
+             int64_t m = generateM(bits, simple, simpleDel);
             number = 2 * m + 1;
 
             if (!contains(simpleDel, 2)) {

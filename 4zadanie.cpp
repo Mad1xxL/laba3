@@ -18,7 +18,7 @@ int main()  {
         prefix[i + 1] = prefix[i] + a[i];
     }
 
-    long long scorePlayers[2] = {0, 0};
+    int64_t scorePlayers[2] = {0, 0};
     int prevTake[2] = {0, 0};
     int player = 0;                             // 0 — Павел, 1 — Вика
     int pos = 0;
@@ -26,7 +26,7 @@ int main()  {
     while (pos < n) {
         int nOstaloc = n - pos;
         int limit = std::min(m, nOstaloc);  
-        long long bestSum = LLONG_MIN;          // Лучшая найденная сумма
+        int64_t bestSum = LLONG_MIN;          // Лучшая найденная сумма
         int bestTake = -1;
 
         for (int take = 1; take <= limit; take++)   {       // Перебор всех возможных ходов
@@ -34,7 +34,7 @@ int main()  {
                 continue;
             }
 
-            long long s = prefix[pos + take] - prefix[pos];
+            int64_t s = prefix[pos + take] - prefix[pos];
             if (s > bestSum || (s == bestSum && take < bestTake))   {
                 bestSum = s;
                 bestTake = take;
